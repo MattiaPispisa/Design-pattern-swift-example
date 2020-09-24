@@ -1,4 +1,4 @@
-import XCTest
+//import XCTest
 
 /// The Context defines the interface of interest to clients. It also maintains
 /// a reference to an instance of a State subclass, which represents the current
@@ -8,6 +8,12 @@ class Contesto {
     /// A reference to the current state of the Context.
     private var stato: Stato
 
+    private var nameStateWorking: String {
+        get {
+            String(describing: stato)
+        }
+    }
+
     init(_ stato: Stato) {
         self.stato = stato
         transitionTo(stato: stato)
@@ -15,7 +21,7 @@ class Contesto {
 
     /// The Context allows changing the State object at runtime.
     func transitionTo(stato: Stato) {
-        print("Context: Transition to " + String(describing: stato))
+        print("Context: Transition to " + nameStateWorking)
         self.stato = stato
         self.stato.update(context: self)
     }
@@ -44,7 +50,7 @@ protocol Stato: class {
 
 class BaseState: Stato {
 
-    private(set) weak var context: Contesto?
+    private(set) weak var context: Contesto? 
 
     func update(context: Contesto) {
         self.context = context
@@ -83,13 +89,24 @@ class ConcreteStateB: BaseState {
 }
 
 /// Let's see how it all works together.
-class StateConceptual: XCTestCase {
+// class StateConceptual: XCTestCase {
 
-    func test() {
-        let context = Contesto(ConcreteStateA())
-        context.request1()
-        context.request2()
-    }
-}
+//     func test() {
+//         let context = Contesto(ConcreteStateA())
+//         context.request1()
+//         context.request2()
+//     }
+// }
 
-StateConceptual.defaultTestSuite.run()
+// StateConceptual.defaultTestSuite.run()
+
+
+let context = Contesto(ConcreteStateA())
+//richiedo il lavoro al contesto e di conseguenza viene cambiato lo stato (se serve)
+//esempio:
+//stato iniziale = cancello chiuso
+//se request1 = apri il cancello 
+//allora lo stato che raggiungerò sara cancello aperto
+context.request1()
+//dato che la request1 ha cambiato lo stato request2 cambia comportamento (reagirà allo stato cancello aperto)
+context.request2()
