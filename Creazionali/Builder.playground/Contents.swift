@@ -1,18 +1,23 @@
-import XCTest
+//import XCTest
 
 /// The Builder interface specifies methods for creating the different parts of
 /// the Product objects.
 protocol Builder {
-
+    func productName() -> String
     func producePartA()
     func producePartB()
     func producePartC()
 }
 
+
 /// The Concrete Builder classes follow the Builder interface and provide
 /// specific implementations of the building steps. Your program may have
 /// several variations of Builders, implemented differently.
 class ConcreteBuilder1: Builder {
+    func productName() -> String {
+        return "Product1"
+    }
+
 
     /// A fresh builder instance should contain a blank product object, which is
     /// used in further assembly.
@@ -54,6 +59,39 @@ class ConcreteBuilder1: Builder {
     }
 }
 
+class ConcreteBuilder2: Builder {
+
+    func productName() -> String {
+        return "Product2"
+    }
+
+    private var product = Product2()
+
+    func reset() {
+        product = Product2()
+    }
+
+    /// All production steps work with the same product instance.
+    func producePartA() {
+        product.add(part: "PartA2")
+    }
+
+    func producePartB() {
+        product.add(part: "PartB2")
+    }
+
+    func producePartC() {
+        product.add(part: "PartC2")
+    }
+
+    func retrieveProduct() -> Product2 {
+        let result = self.product
+        reset()
+        return result
+    }
+}
+
+
 /// The Director is only responsible for executing the building steps in a
 /// particular sequence. It is helpful when producing products according to a
 /// specific order or configuration. Strictly speaking, the Director class is
@@ -67,6 +105,7 @@ class Director {
     /// assembled product.
     func update(builder: Builder) {
         self.builder = builder
+        print("Director: Building " + builder.productName())
     }
 
     /// The Director can construct several product variations using the same
@@ -101,6 +140,19 @@ class Product1 {
     }
 }
 
+class Product2 {
+
+    private var parts = [String]()
+
+    func add(part: String) {
+        self.parts.append(part)
+    }
+
+    func listParts() -> String {
+        return "Product parts: " + parts.joined(separator: ", ") + "\n"
+    }
+}
+
 /// The client code creates a builder object, passes it to the director and then
 /// initiates the construction process. The end result is retrieved from the
 /// builder object.
@@ -123,19 +175,29 @@ class Client {
         builder.producePartA()
         builder.producePartC()
         print(builder.retrieveProduct().listParts())
+
+
+        //il director può cambiare il builder
+        print("Hey Director change to product 2")
+        let builder2 = ConcreteBuilder2()
+        director.update(builder: builder2)
+        director.buildFullFeaturedProduct()
+        print(builder2.retrieveProduct().listParts())
     }
     // ...
 }
 
 /// Let's see how it all comes together.
-class BuilderConceptual: XCTestCase {
+// class BuilderConceptual: XCTestCase {
 
-    func testBuilderConceptual() {
-        let director = Director()
+//     func testBuilderConceptual() {
+//         let director = Director()
+//         Client.someClientCode(director: director)
+//     }
+// }
+
+// BuilderConceptual.defaultTestSuite.run()
+
+
+let director = Director()
         Client.someClientCode(director: director)
-    }
-}
-
-BuilderConceptual.defaultTestSuite.run()
-
-

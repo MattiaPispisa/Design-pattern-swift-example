@@ -1,4 +1,4 @@
-import XCTest
+//import XCTest
 
 /// The Subject interface declares common operations for both RealSubject and
 /// the Proxy. As long as the client works with RealSubject using this
@@ -72,15 +72,23 @@ class Client {
 }
 
 /// Let's see how it all works together.
-class ProxyConceptual: XCTestCase {
+// class ProxyConceptual: XCTestCase {
 
-    func test() {
-        print("Client: Executing the client code with a real subject:")
-        let realSubject = RealSubject()
-        Client.clientCode(subject: realSubject)
+//     func test() {
+//         print("Client: Executing the client code with a real subject:")
+//         let realSubject = RealSubject()
+//         Client.clientCode(subject: realSubject)
 
-        print("\nClient: Executing the same client code with a proxy:")
-        let proxy = Proxy(realSubject)
-        Client.clientCode(subject: proxy)
-    }
-}
+//         print("\nClient: Executing the same client code with a proxy:")
+//         let proxy = Proxy(realSubject)
+//         Client.clientCode(subject: proxy)
+//     }
+// }
+
+print("Client: Executing the client code with a real subject:")
+let realSubject = RealSubject()
+Client.clientCode(subject: realSubject)
+
+print("\nClient: Executing the same client code with a proxy:")
+let proxy = Proxy(realSubject)
+Client.clientCode(subject: proxy)

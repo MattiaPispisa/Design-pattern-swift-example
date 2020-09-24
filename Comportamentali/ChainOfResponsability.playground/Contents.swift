@@ -1,4 +1,4 @@
-import XCTest
+//import XCTest
 
 /// The Handler interface declares a method for building the chain of handlers.
 /// It also declares a method for executing a request.
@@ -92,7 +92,7 @@ class Client {
     }
     // ...
 }
-
+/*
 /// Let's see how it all works together.
 class ChainOfResponsibilityConceptual: XCTestCase {
  
@@ -117,3 +117,18 @@ class ChainOfResponsibilityConceptual: XCTestCase {
 }
 
 ChainOfResponsibilityConceptual.defaultTestSuite.run()
+*/
+
+let monkey = MonkeyHandler()
+let squirrel = SquirrelHandler()
+let dog = DogHandler()
+monkey.setNext(handler: squirrel).setNext(handler: dog)
+
+/// The client should be able to send a request to any handler, not just
+/// the first one in the chain.
+
+print("Chain: Monkey > Squirrel > Dog\n\n")
+Client.someClientCode(handler: monkey)
+print()
+print("Subchain: Squirrel > Dog\n\n")
+Client.someClientCode(handler: squirrel)

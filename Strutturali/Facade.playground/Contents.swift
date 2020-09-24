@@ -1,4 +1,4 @@
-import XCTest
+//import XCTest
 
 /// The Facade class provides a simple interface to the complex logic of one or
 /// several subsystems. The Facade delegates the client requests to the
@@ -77,21 +77,24 @@ class Client {
 }
 
 /// Let's see how it all works together.
-class FacadeConceptual: XCTestCase {
+// class FacadeConceptual: XCTestCase {
 
-    func testFacadeConceptual() {
+//     func testFacadeConceptual() {
+//         let subsystem1 = Subsystem1()
+//         let subsystem2 = Subsystem2()
+//         let facade = Facade(subsystem1: subsystem1, subsystem2: subsystem2)
+//         Client.clientCode(facade: facade)
+//     }
+// }
 
-        /// The client code may have some of the subsystem's objects already
-        /// created. In this case, it might be worthwhile to initialize the
-        /// Facade with these objects instead of letting the Facade create new
-        /// instances.
+// FacadeConceptual.defaultTestSuite.run()
 
-        let subsystem1 = Subsystem1()
-        let subsystem2 = Subsystem2()
-        let facade = Facade(subsystem1: subsystem1, subsystem2: subsystem2)
-        Client.clientCode(facade: facade)
-    }
-}
+/// The client code may have some of the subsystem's objects already
+/// created. In this case, it might be worthwhile to initialize the
+/// Facade with these objects instead of letting the Facade create new
+/// instances.
 
-FacadeConceptual.defaultTestSuite.run()
-
+let subsystem1 = Subsystem1()
+let subsystem2 = Subsystem2()
+let facade = Facade(subsystem1: subsystem1, subsystem2: subsystem2)
+Client.clientCode(facade: facade)

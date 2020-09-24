@@ -1,4 +1,4 @@
-import XCTest
+//import XCTest
 
 /// The Abstraction defines the interface for the "control" part of the two
 /// class hierarchies. It maintains a reference to an object of the
@@ -65,17 +65,26 @@ class Client {
 }
 
 /// Let's see how it all works together.
-class BridgeConceptual: XCTestCase {
+// class BridgeConceptual: XCTestCase {
 
-    func testBridgeConceptual() {
-        // The client code should be able to work with any pre-configured
-        // abstraction-implementation combination.
-        let implementation = ConcreteImplementationA()
-        Client.someClientCode(abstraction: Abstraction(implementation))
+//     func testBridgeConceptual() {
+       
+//         let implementation = ConcreteImplementationA()
+//         Client.someClientCode(abstraction: Abstraction(implementation))
 
-        let concreteImplementation = ConcreteImplementationB()
-        Client.someClientCode(abstraction: ExtendedAbstraction(concreteImplementation))
-    }
-}
+//         let concreteImplementation = ConcreteImplementationB()
+//         Client.someClientCode(abstraction: ExtendedAbstraction(concreteImplementation))
+//     }
+// }
 
-BridgeConceptual.defaultTestSuite.run()
+// BridgeConceptual.defaultTestSuite.run()
+
+ // The client code should be able to work with any pre-configured
+// abstraction-implementation combination.
+let implementation = ConcreteImplementationA()
+let abstraction = Abstraction(implementation)
+Client.someClientCode(abstraction: abstraction)
+
+let concreteImplementation = ConcreteImplementationB()
+let extendedAbstraction = ExtendedAbstraction(concreteImplementation)
+Client.someClientCode(abstraction: extendedAbstraction)

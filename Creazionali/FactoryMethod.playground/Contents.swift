@@ -1,4 +1,4 @@
-import XCTest
+//import XCTest
 
 /// The Creator protocol declares the factory method that's supposed to return a
 /// new object of a Product class. The Creator's subclasses usually provide the
@@ -86,20 +86,23 @@ class Client {
 }
 
 /// Let's see how it all works together.
-class FactoryMethodConceptual: XCTestCase {
+// class FactoryMethodConceptual: XCTestCase {
 
-    func testFactoryMethodConceptual() {
+//     func testFactoryMethodConceptual() {
 
-        /// The Application picks a creator's type depending on the
-        /// configuration or environment.
 
-        print("App: Launched with the ConcreteCreator1.")
-        Client.someClientCode(creator: ConcreteCreator1())
+//         print("App: Launched with the ConcreteCreator1.")
+//         Client.someClientCode(creator: ConcreteCreator1())
 
-        print("\nApp: Launched with the ConcreteCreator2.")
-        Client.someClientCode(creator: ConcreteCreator2())
-    }
-}
+//         print("\nApp: Launched with the ConcreteCreator2.")
+//         Client.someClientCode(creator: ConcreteCreator2())
+//     }
+// }
 
-FactoryMethodConceptual.defaultTestSuite.run()
+// FactoryMethodConceptual.defaultTestSuite.run()
 
+print("App: Launched with the ConcreteCreator1.")
+Client.someClientCode(creator: ConcreteCreator1())
+
+print("\nApp: Launched with the ConcreteCreator2.")
+Client.someClientCode(creator: ConcreteCreator2())

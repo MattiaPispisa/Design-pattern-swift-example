@@ -1,4 +1,4 @@
-import XCTest
+//import XCTest
 
 /// The Flyweight stores a common portion of the state (also called intrinsic
 /// state) that belongs to multiple real business entities. The Flyweight
@@ -125,3 +125,4 @@ class FlyweightConceptual: XCTestCase {
 }
 
 FlyweightConceptual.defaultTestSuite.run()
+

@@ -1,5 +1,5 @@
-import XCTest
-
+//import XCTest
+import Foundation
 /// Swift has built-in cloning support. To add cloning support to your class,
 /// you need to implement the NSCopying protocol in that class and provide the
 /// implementation for the `copy` method.
@@ -53,15 +53,17 @@ class SubClass: BaseClass {
 class Client {
     // ...
     static func someClientCode() {
-        let original = SubClass(intValue: 2, stringValue: "Value2")
+        let original : BaseClass = SubClass(intValue: 2, stringValue: "Value2") //il client parla a baseClass
 
-        guard let copy = original.copy() as? SubClass else {
-            XCTAssert(false)
+        guard let copy = original.copy() as? SubClass else {                    //ma quando fa il copy usa SubClass
+            //XCTAssert(false)
+            assert(false)
             return
         }
 
         /// See implementation of `Equatable` protocol for more details.
-        XCTAssert(copy == original)
+        //XCTAssert(copy == original)
+        assert(copy == original)
 
         print("The original object is equal to the copied object!")
     }
@@ -69,11 +71,14 @@ class Client {
 }
 
 /// Let's see how it all works together.
-class PrototypeConceptual: XCTestCase {
+// class PrototypeConceptual: XCTestCase {
 
-    func testPrototype_NSCopying() {
-        Client.someClientCode()
-    }
-}
+//     func testPrototype_NSCopying() {
+//         Client.someClientCode()
+//     }
+// }
 
-PrototypeConceptual.defaultTestSuite.run()
+// PrototypeConceptual.defaultTestSuite.run()
+
+
+Client.someClientCode()

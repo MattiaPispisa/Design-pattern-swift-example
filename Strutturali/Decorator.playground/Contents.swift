@@ -1,4 +1,4 @@
-import XCTest
+//import XCTest
 
 /// The base Component interface defines operations that can be altered by
 /// decorators.
@@ -68,23 +68,33 @@ class Client {
 }
 
 /// Let's see how it all works together.
-class DecoratorConceptual: XCTestCase {
+// class DecoratorConceptual: XCTestCase {
 
-    func testDecoratorConceptual() {
-        // This way the client code can support both simple components...
-        print("Client: I've got a simple component")
-        let simple = ConcreteComponent()
-        Client.someClientCode(component: simple)
+//     func testDecoratorConceptual() {
 
-        // ...as well as decorated ones.
-        //
-        // Note how decorators can wrap not only simple components but the other
-        // decorators as well.
-        let decorator1 = ConcreteDecoratorA(simple)
-        let decorator2 = ConcreteDecoratorB(decorator1)
-        print("\nClient: Now I've got a decorated component")
-        Client.someClientCode(component: decorator2)
-    }
-}
+//         print("Client: I've got a simple component")
+//         let simple = ConcreteComponent()
+//         Client.someClientCode(component: simple)
 
-DecoratorConceptual.defaultTestSuite.run()
+//         let decorator1 = ConcreteDecoratorA(simple)
+//         let decorator2 = ConcreteDecoratorB(decorator1)
+//         print("\nClient: Now I've got a decorated component")
+//         Client.someClientCode(component: decorator2)
+//     }
+// }
+
+// DecoratorConceptual.defaultTestSuite.run()
+
+// This way the client code can support both simple components...
+print("Client: I've got a simple component")
+let simple = ConcreteComponent()
+Client.someClientCode(component: simple)
+
+// ...as well as decorated ones.
+//
+// Note how decorators can wrap not only simple components but the other
+// decorators as well.
+let decorator1 = ConcreteDecoratorA(simple)
+let decorator2 = ConcreteDecoratorB(decorator1)
+print("\nClient: Now I've got a decorated component")
+Client.someClientCode(component: decorator2)
