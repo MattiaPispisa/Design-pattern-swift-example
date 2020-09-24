@@ -1,4 +1,4 @@
-import XCTest
+//import XCTest
 
 /// The Command interface declares a method for executing a command.
 protocol Command {
@@ -94,18 +94,26 @@ class Invoker {
 }
 
 /// Let's see how it all comes together.
-class CommandConceptual: XCTestCase {
+// class CommandConceptual: XCTestCase {
 
-    func test() {
-        /// The client code can parameterize an invoker with any commands.
+//     func test() {
 
-        let invoker = Invoker()
-        invoker.setOnStart(SimpleCommand("Say Hi!"))
+//         let invoker = Invoker()
+//         invoker.setOnStart(SimpleCommand("Say Hi!"))
 
-        let receiver = Receiver()
-        invoker.setOnFinish(ComplexCommand(receiver, "Send email", "Save report"))
-        invoker.doSomethingImportant()
-    }
-}
+//         let receiver = Receiver()
+//         invoker.setOnFinish(ComplexCommand(receiver, "Send email", "Save report"))
+//         invoker.doSomethingImportant()
+//     }
+// }
 
-CommandConceptual.defaultTestSuite.run()
+// CommandConceptual.defaultTestSuite.run()
+
+/// The client code can parameterize an invoker with any commands.
+
+let invoker = Invoker()
+invoker.setOnStart(SimpleCommand("Say Hi!"))
+
+let receiver = Receiver()
+invoker.setOnFinish(ComplexCommand(receiver, "Send email", "Save report"))
+invoker.doSomethingImportant()

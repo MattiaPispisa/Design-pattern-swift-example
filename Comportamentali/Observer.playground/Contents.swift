@@ -1,16 +1,28 @@
-import XCTest
+//import XCTest
 
 /// The Subject owns some important state and notifies observers when the state
 /// changes.
-class Subject {
+
+protocol Subject {
+
+    var observers: [Observer] {get set}
+    func attach(_ observer: Observer) 
+    func detach(_ observer: Observer) 
+    func notify()
+}
+
+class ConcreteSubject: Subject {
 
     /// For the sake of simplicity, the Subject's state, essential to all
     /// subscribers, is stored in this variable.
-    var state: Int = { return Int(arc4random_uniform(10)) }()
+    var state: Int = { return Int.random(in: 0..<10) }()
 
     /// @var array List of subscribers. In real life, the list of subscribers
     /// can be stored more comprehensively (categorized by event type, etc.).
-    private lazy var observers = [Observer]()
+    var observers: [Observer]
+    init() {
+        observers = [Observer]()
+    }
 
     /// The subscription management methods.
     func attach(_ observer: Observer) {
@@ -37,7 +49,7 @@ class Subject {
     /// happen (or after it).
     func someBusinessLogic() {
         print("\nSubject: I'm doing something important.\n")
-        state = Int(arc4random_uniform(10))
+        state = Int.random(in: 0..<10)
         print("Subject: My state has just changed to: \(state)\n")
         notify()
     }
@@ -46,14 +58,14 @@ class Subject {
 /// The Observer protocol declares the update method, used by subjects.
 protocol Observer: class {
 
-    func update(subject: Subject)
+    func update(subject: ConcreteSubject)
 }
 
 /// Concrete Observers react to the updates issued by the Subject they had been
 /// attached to.
 class ConcreteObserverA: Observer {
 
-    func update(subject: Subject) {
+    func update(subject: ConcreteSubject) {
 
         if subject.state < 3 {
             print("ConcreteObserverA: Reacted to the event.\n")
@@ -63,7 +75,7 @@ class ConcreteObserverA: Observer {
 
 class ConcreteObserverB: Observer {
 
-    func update(subject: Subject) {
+    func update(subject: ConcreteSubject) {
 
         if subject.state >= 3 {
             print("ConcreteObserverB: Reacted to the event.\n")
@@ -72,21 +84,34 @@ class ConcreteObserverB: Observer {
 }
 
 /// Let's see how it all works together.
-class ObserverConceptual: XCTestCase {
+// class ObserverConceptual: XCTestCase {
 
-    func testObserverConceptual() {
+//     func testObserverConceptual() {
 
-        let subject = Subject()
+//         let subject = Subject()
 
-        let observer1 = ConcreteObserverA()
-        let observer2 = ConcreteObserverB()
+//         let observer1 = ConcreteObserverA()
+//         let observer2 = ConcreteObserverB()
 
-        subject.attach(observer1)
-        subject.attach(observer2)
+//         subject.attach(observer1)
+//         subject.attach(observer2)
 
-        subject.someBusinessLogic()
-        subject.someBusinessLogic()
-        subject.detach(observer2)
-        subject.someBusinessLogic()
-    }
-}
+//         subject.someBusinessLogic()
+//         subject.someBusinessLogic()
+//         subject.detach(observer2)
+//         subject.someBusinessLogic()
+//     }
+// }
+
+let subject = ConcreteSubject()
+
+let observer1 = ConcreteObserverA()
+let observer2 = ConcreteObserverB()
+
+subject.attach(observer1)
+subject.attach(observer2)
+
+subject.someBusinessLogic()
+subject.someBusinessLogic()
+subject.detach(observer2)
+subject.someBusinessLogic()
