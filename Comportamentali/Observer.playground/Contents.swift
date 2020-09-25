@@ -6,8 +6,8 @@
 protocol Subject {
 
     var observers: [Observer] {get set}
-    func attach(_ observer: Observer) 
-    func detach(_ observer: Observer) 
+    func register(_ observer: Observer) 
+    func remove(_ observer: Observer) 
     func notify()
 }
 
@@ -25,15 +25,15 @@ class ConcreteSubject: Subject {
     }
 
     /// The subscription management methods.
-    func attach(_ observer: Observer) {
-        print("Subject: Attached an observer.\n")
+    func register(_ observer: Observer) {
+        print("Subject: registered an observer.\n")
         observers.append(observer)
     }
 
-    func detach(_ observer: Observer) {
+    func remove(_ observer: Observer) {
         if let idx = observers.firstIndex(where: { $0 === observer }) {
             observers.remove(at: idx)
-            print("Subject: Detached an observer.\n")
+            print("Subject: removeed an observer.\n")
         }
     }
 
@@ -62,7 +62,7 @@ protocol Observer: class {
 }
 
 /// Concrete Observers react to the updates issued by the Subject they had been
-/// attached to.
+/// registered to.
 class ConcreteObserverA: Observer {
 
     func update(subject: ConcreteSubject) {
@@ -93,12 +93,12 @@ class ConcreteObserverB: Observer {
 //         let observer1 = ConcreteObserverA()
 //         let observer2 = ConcreteObserverB()
 
-//         subject.attach(observer1)
-//         subject.attach(observer2)
+//         subject.register(observer1)
+//         subject.register(observer2)
 
 //         subject.someBusinessLogic()
 //         subject.someBusinessLogic()
-//         subject.detach(observer2)
+//         subject.remove(observer2)
 //         subject.someBusinessLogic()
 //     }
 // }
@@ -108,10 +108,10 @@ let subject = ConcreteSubject()
 let observer1 = ConcreteObserverA()
 let observer2 = ConcreteObserverB()
 
-subject.attach(observer1)
-subject.attach(observer2)
+subject.register(observer1)
+subject.register(observer2)
 
 subject.someBusinessLogic()
 subject.someBusinessLogic()
-subject.detach(observer2)
+subject.remove(observer2)
 subject.someBusinessLogic()

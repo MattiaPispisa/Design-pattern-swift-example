@@ -1,4 +1,4 @@
-import XCTest
+//import XCTest
 
 /// The Component interface declares an `accept` method that should take the
 /// base visitor interface as an argument.
@@ -43,7 +43,7 @@ class ConcreteComponentB: Component {
 /// identify the exact class of the component that it's dealing with.
 protocol Visitor {
 
-    func visitConcreteComponentA(element: ConcreteComponentA)
+    func visitConcreteComponentA(element: ConcreteComponentA) //Nota, dipende dall'implementazione e non dalla classe astratta
     func visitConcreteComponentB(element: ConcreteComponentB)
 }
 
@@ -90,20 +90,31 @@ class Client {
 }
 
 /// Let's see how it all works together.
-class VisitorConceptual: XCTestCase {
+// class VisitorConceptual: XCTestCase {
 
-    func test() {
-        let components: [Component] = [ConcreteComponentA(), ConcreteComponentB()]
+//     func test() {
+//         let components: [Component] = [ConcreteComponentA(), ConcreteComponentB()]
 
-        print("The client code works with all visitors via the base Visitor interface:\n")
-        let visitor1 = ConcreteVisitor1()
-        Client.clientCode(components: components, visitor: visitor1)
+//         print("The client code works with all visitors via the base Visitor interface:\n")
+//         let visitor1 = ConcreteVisitor1()
+//         Client.clientCode(components: components, visitor: visitor1)
 
-        print("\nIt allows the same client code to work with different types of visitors:\n")
-        let visitor2 = ConcreteVisitor2()
-        Client.clientCode(components: components, visitor: visitor2)
-    }
-}
+//         print("\nIt allows the same client code to work with different types of visitors:\n")
+//         let visitor2 = ConcreteVisitor2()
+//         Client.clientCode(components: components, visitor: visitor2)
+//     }
+// }
 
 
-VisitorConceptual.defaultTestSuite.run()
+// VisitorConceptual.defaultTestSuite.run()
+
+
+let components: [Component] = [ConcreteComponentA(), ConcreteComponentB()]
+
+print("The client code works with all visitors via the base Visitor interface:\n")
+let visitor1 = ConcreteVisitor1()
+Client.clientCode(components: components, visitor: visitor1)
+
+print("\nIt allows the same client code to work with different types of visitors:\n")
+let visitor2 = ConcreteVisitor2()
+Client.clientCode(components: components, visitor: visitor2)
