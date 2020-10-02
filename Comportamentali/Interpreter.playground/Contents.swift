@@ -1,6 +1,6 @@
 //The interpreter pattern is used to evaluate sentences in a language.
 
-import XCTest
+//import XCTest
 
 protocol Context {
     
@@ -76,22 +76,37 @@ final class AddExpression: IntegerExpression {
     }
 }
 
-class InterpreterConceptual: XCTestCase {
-    func test() {
-        let context = IntegerContext()
+// class InterpreterConceptual: XCTestCase {
+//     func test() {
+//         let context = IntegerContext()
 
-        let a = IntegerVariableExpression(name: "A")
-        let b = IntegerVariableExpression(name: "B")
-        let c = IntegerVariableExpression(name: "C")
+//         let a = IntegerVariableExpression(name: "A")
+//         let b = IntegerVariableExpression(name: "B")
+//         let c = IntegerVariableExpression(name: "C")
 
-        let expression = AddExpression(op1: a, op2: AddExpression(op1: b, op2: c)) // a + (b + c)
+//         let expression = AddExpression(op1: a, op2: AddExpression(op1: b, op2: c)) // a + (b + c)
 
-        context.assign(expression: a, value: 2)
-        context.assign(expression: b, value: 1)
-        context.assign(expression: c, value: 3)
+//         context.assign(expression: a, value: 2)
+//         context.assign(expression: b, value: 1)
+//         context.assign(expression: c, value: 3)
 
-        expression.interpret(context)
-    }
-}
+//         expression.interpret(context)
+//     }
+// }
 
-InterpreterConceptual.defaultTestSuite.run()
+// InterpreterConceptual.defaultTestSuite.run()
+
+let context = IntegerContext()
+
+let a = IntegerVariableExpression(name: "A")
+let b = IntegerVariableExpression(name: "B")
+let c = IntegerVariableExpression(name: "C")
+
+let expression = AddExpression(op1: a, op2: AddExpression(op1: b, op2: c)) // a + (b + c)
+
+context.assign(expression: a, value: 2)
+context.assign(expression: b, value: 1)
+context.assign(expression: c, value: 3)
+
+let result = expression.interpret(context)
+print("Risultato dell'espressione: " + String(result));
