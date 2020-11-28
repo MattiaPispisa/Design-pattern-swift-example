@@ -1,4 +1,4 @@
-//import XCTest
+import XCTest
 
 //Esempio di Class adapter si vedere dal fato che Adapter eredita Adaptee
 
@@ -47,30 +47,21 @@ class Client {
     // ...
 }
 
-/// Let's see how it all works together.
-// class AdapterConceptual: XCTestCase {
+// Let's see how it all works together.
+ class AdapterConceptual: XCTestCase {
 
-//     func testAdapterConceptual() {
-//         print("Client: I can work just fine with the Target objects:")
-//         Client.someClientCode(target: Target())
+     func testAdapterConceptual() {
+         print("Client: I can work just fine with the Target objects:")
+         Client.someClientCode(target: ConcreteTarget())
 
-//         let adaptee = Adaptee()
-//         print("Client: The Adaptee class has a weird interface. See, I don't understand it:")
-//         print("Adaptee: " + adaptee.specificRequest())
+         let adaptee = Adaptee()
+         print("Client: The Adaptee class has a weird interface. See, I don't understand it:")
+         print("Adaptee: " + adaptee.specificRequest())
 
-//         print("Client: But I can work with it via the Adapter:")
-//         Client.someClientCode(target: Adapter(adaptee))
-//     }
-// }
+         print("Client: But I can work with it via the Adapter:")
+         Client.someClientCode(target: ClassAdapter())
+     }
+ }
 
-// AdapterConceptual.defaultTestSuite.run()
+ AdapterConceptual.defaultTestSuite.run()
 
-print("Client: I can work just fine with the Target objects:")
-Client.someClientCode(target: ConcreteTarget())
-
-let adaptee = Adaptee()
-print("Client: The Adaptee class has a weird interface. See, I don't understand it:")
-print("Adaptee: " + adaptee.specificRequest())
-
-print("Client: But I can work with it via the Adapter:")
-Client.someClientCode(target: ClassAdapter())

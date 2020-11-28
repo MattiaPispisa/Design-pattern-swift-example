@@ -1,4 +1,4 @@
-//import XCTest
+import XCTest
 
 typealias Composto = Sequence
 typealias Iteratore = IteratorProtocol
@@ -16,7 +16,6 @@ class CompostoConcreto: Composto {
 
 extension CompostoConcreto {
 
-    //Factory Method, la parte astratta di un metodo di Composto dove creo un iteratore specifico 
     func makeIterator() -> IteratoreConcreto {
         return IteratoreConcreto(self)
     }
@@ -52,25 +51,18 @@ class Client {
 }
 
 /// Let's see how it all works together.
-// class IteratorConceptual: XCTestCase {
+ class IteratorConceptual: XCTestCase {
 
-//     func testIteratorProtocol() {
+     func testIteratorProtocol() {
 
-//         let words = CompostoConcreto()
-//         words.append("First")
-//         words.append("Second")
-//         words.append("Third")
+         let words = CompostoConcreto()
+         words.append("First")
+         words.append("Second")
+         words.append("Third")
 
-//         print("Straight traversal using IteratorProtocol:")
-//         Client.clientCode(sequence: words)
-//     }
+         print("Straight traversal using IteratorProtocol:")
+         Client.clientCode(sequence: words)
+     }
 
-// }
+ }
 
-let words = CompostoConcreto()
-words.append("First")
-words.append("Second")
-words.append("Third")
-
-print("Straight traversal using IteratorProtocol:")
-Client.clientCode(sequence: words)

@@ -1,4 +1,4 @@
-//import XCTest
+import XCTest
 
 /// The Abstract Factory protocol declares a set of methods that return
 /// different abstract products. These products are called a family and are
@@ -123,25 +123,17 @@ class Client {
 }
 
 /// Let's see how it all works together.
-// class AbstractFactoryConceptual: XCTestCase {
+ class AbstractFactoryConceptual: XCTestCase {
 
-//     func testAbstractFactoryConceptual() {
+     func testAbstractFactoryConceptual() {
 
 
-//         print("Client: Testing client code with the first factory type:")
-//         Client.someClientCode(factory: ConcreteFactory1())
+         print("Client: Testing client code with the first factory type:")
+         Client.someClientCode(factory: ConcreteFactory1())
 
-//         print("Client: Testing the same client code with the second factory type:")
-//         Client.someClientCode(factory: ConcreteFactory2())
-//     }
-// }
+         print("Client: Testing the same client code with the second factory type:")
+         Client.someClientCode(factory: ConcreteFactory2())
+     }
+ }
 
-// AbstractFactoryConceptual.defaultTestSuite.run()
-
- /// The client code can work with any concrete factory class.
-
-        print("Client: Testing client code with the first factory type:")
-        Client.someClientCode(factory: ConcreteFactory1())
-
-        print("Client: Testing the same client code with the second factory type:")
-        Client.someClientCode(factory: ConcreteFactory2())
+ AbstractFactoryConceptual.defaultTestSuite.run()

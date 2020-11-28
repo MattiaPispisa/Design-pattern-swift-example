@@ -1,4 +1,4 @@
-//import XCTest
+import XCTest
 
 /// The Subject owns some important state and notifies observers when the state
 /// changes.
@@ -84,34 +84,21 @@ class ConcreteObserverB: Observer {
 }
 
 /// Let's see how it all works together.
-// class ObserverConceptual: XCTestCase {
+ class ObserverConceptual: XCTestCase {
 
-//     func testObserverConceptual() {
+     func testObserverConceptual() {
 
-//         let subject = Subject()
+         let subject = ConcreteSubject()
 
-//         let observer1 = ConcreteObserverA()
-//         let observer2 = ConcreteObserverB()
+         let observer1 = ConcreteObserverA()
+         let observer2 = ConcreteObserverB()
 
-//         subject.register(observer1)
-//         subject.register(observer2)
+         subject.register(observer1)
+         subject.register(observer2)
 
-//         subject.someBusinessLogic()
-//         subject.someBusinessLogic()
-//         subject.remove(observer2)
-//         subject.someBusinessLogic()
-//     }
-// }
-
-let subject = ConcreteSubject()
-
-let observer1 = ConcreteObserverA()
-let observer2 = ConcreteObserverB()
-
-subject.register(observer1)
-subject.register(observer2)
-
-subject.someBusinessLogic()
-subject.someBusinessLogic()
-subject.remove(observer2)
-subject.someBusinessLogic()
+         subject.someBusinessLogic()
+         subject.someBusinessLogic()
+         subject.remove(observer2)
+         subject.someBusinessLogic()
+     }
+ }

@@ -1,4 +1,4 @@
-//import XCTest
+import XCTest
 
 /// The base Component class declares common operations for both simple and
 /// complex objects of a composition.
@@ -104,57 +104,32 @@ class Client {
 }
 
 /// Let's see how it all comes together.
-// class CompositeConceptual: XCTestCase {
+ class CompositeConceptual: XCTestCase {
 
-//     func testCompositeConceptual() {
+     func testCompositeConceptual() {
 
-//         print("Client: I've got a simple component:")
-//         Client.someClientCode(component: Leaf())
+         print("Client: I've got a simple component:")
+         Client.someClientCode(component: Leaf())
 
-//         let tree = Composite()
+         let tree = Composite()
 
-//         let branch1 = Composite()
-//         branch1.add(component: Leaf())
-//         branch1.add(component: Leaf())
+         let branch1 = Composite()
+         branch1.add(component: Leaf())
+         branch1.add(component: Leaf())
 
-//         let branch2 = Composite()
-//         branch2.add(component: Leaf())
-//         branch2.add(component: Leaf())
+         let branch2 = Composite()
+         branch2.add(component: Leaf())
+         branch2.add(component: Leaf())
 
-//         tree.add(component: branch1)
-//         tree.add(component: branch2)
+         tree.add(component: branch1)
+         tree.add(component: branch2)
 
-//         print("\nClient: Now I've got a composite tree:")
-//         Client.someClientCode(component: tree)
+         print("\nClient: Now I've got a composite tree:")
+         Client.someClientCode(component: tree)
 
-//         print("\nClient: I don't need to check the components classes even when managing the tree:")
-//         Client.moreComplexClientCode(leftComponent: tree, rightComponent: Leaf())
-//     }
-// }
+         print("\nClient: I don't need to check the components classes even when managing the tree:")
+         Client.moreComplexClientCode(leftComponent: tree, rightComponent: Leaf())
+     }
+ }
 
-// CompositeConceptual.defaultTestSuite.run()
-
-
- /// This way the client code can support the simple leaf components...
-print("Client: I've got a simple component:")
-Client.someClientCode(component: Leaf())
-
-/// ...as well as the complex composites.
-let tree = Composite()
-
-let branch1 = Composite()
-branch1.add(component: Leaf())
-branch1.add(component: Leaf())
-
-let branch2 = Composite()
-branch2.add(component: Leaf())
-branch2.add(component: Leaf())
-
-tree.add(component: branch1)
-tree.add(component: branch2)
-
-print("\nClient: Now I've got a composite tree:")
-Client.someClientCode(component: tree)
-
-print("\nClient: I don't need to check the components classes even when managing the tree:")
-Client.moreComplexClientCode(leftComponent: tree, rightComponent: Leaf())
+ CompositeConceptual.defaultTestSuite.run()
